@@ -14,8 +14,15 @@
     "@emotion/styled": "^11.14.0",
     "@mui/icons-material": "^6.4.8",
     "@mui/material": "^6.4.8",
+    "@tsparticles/react": "^3.0.0",
+    "framer-motion": "^12.6.0",
     "react": "^19.0.0",
-    "react-dom": "^19.0.0"
+    "react-canvas-confetti": "^2.0.7",
+    "react-dom": "^19.0.0",
+    "react-particles": "^2.12.2",
+    "react-tsparticles": "^2.12.2",
+    "tsparticles": "^3.8.1",
+    "tsparticles-slim": "^2.12.0"
   },
   "devDependencies": {
     "@eslint/js": "^9.21.0",

@@ -1,33 +1,27 @@
 import React from "react";
-import { AppBar, Toolbar, Typography, IconButton, Switch, Box, Container } from "@mui/material";
-import { DarkMode, LightMode } from "@mui/icons-material";
+import { AppBar, Toolbar, Typography, Box, Container } from "@mui/material";
 
-const Navbar = ({ isDarkMode, toggleDarkMode }) => {
+const Navbar = () => {
   return (
     <AppBar
-      position="static"
-      color="primary"
+      position="fixed"
+      color="transparent"
       sx={{
-        width: "100vw",
-        left: 0,
-        right: 0,
+        width: "100%",
         top: 0,
-        boxShadow: "none",
+        left: 0,
+        backdropFilter: "blur(10px)",
       }}
     >
       <Container maxWidth="xl">
         <Toolbar sx={{ display: "flex", justifyContent: "space-between" }}>
-          <Typography variant="h6" sx={{ flexGrow: 1 }}>
+          <Typography variant="h4" sx={{ flexGrow: 1 }} style ={{
+            cursor: "pointer",
+          }} >
             SQL Playground
           </Typography>
-
-
-          <Box>
-            <IconButton color="inherit" onClick={toggleDarkMode}>
-               {isDarkMode ? <DarkMode /> : <LightMode />}
-            </IconButton>
-            <Switch checked={isDarkMode} onChange={toggleDarkMode} />
-          </Box>
+          <Typography variant="h6" sx={{ flexGrow: 1 }}>Type your query and play around with data.</Typography>
+          <Typography variant="h6" sx={{ flexGrow: 1 }}></Typography>
         </Toolbar>
       </Container>
     </AppBar>
