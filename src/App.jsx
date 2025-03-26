@@ -2,6 +2,7 @@ import React, { useState } from "react";
 import { CssBaseline, ThemeProvider, createTheme } from "@mui/material";
 import { motion } from "framer-motion";
 import Navbar from "./components/Navbar";
+import Queries from "./components/Queries";
 
 function App() {
   const [isDarkMode, setIsDarkMode] = useState(false);
@@ -36,7 +37,7 @@ function App() {
         }}
       ></motion.div>
 
-      
+      <Queries/>
     </ThemeProvider>
   );
 }
