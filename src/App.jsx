@@ -6,6 +6,7 @@ import Queries from "./components/Queries";
 
 function App() {
   const [isDarkMode, setIsDarkMode] = useState(false);
+  const [isQuerySelected , setIsQuerySelected] = React.useState(false);
 
   const theme = createTheme({
     palette: {
@@ -37,7 +38,7 @@ function App() {
         }}
       ></motion.div>
 
-      <Queries/>
+      <Queries  isQuerySelected={isQuerySelected} setIsQuerySelected={setIsQuerySelected} />
     </ThemeProvider>
   );
 }
