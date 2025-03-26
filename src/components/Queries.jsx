@@ -2,7 +2,7 @@ import React, { useState } from "react";
 import { List, ListItem, ListItemText, Typography, Paper } from "@mui/material";
 import { predefinedQueries } from "../data/query-data";
 
-const Queries = ({ onSelectQuery, isQuerySelected, setIsQuerySelected }) => {
+const Queries = ({  isQuerySelected, setIsQuerySelected }) => {
   const [isOpen, setIsOpen] = useState(true);
 
   return (
@@ -54,12 +54,12 @@ const Queries = ({ onSelectQuery, isQuerySelected, setIsQuerySelected }) => {
               <ListItem
                 button
                 key={query.id}
-                onClick={() => onSelectQuery(query.query)}
+                onClick={() => setIsQuerySelected(query.id)}
                 sx={{
-                  backgroundColor: isQuerySelected ? "blue" : "white", 
+                  backgroundColor: isQuerySelected === query.id ? "#cce5ff" : "white",
                   borderBottom: "1px solid #ddd",
                   cursor: "pointer",
-                  "&:hover": { backgroundColor: "#f0f0f0" }, 
+                  "&:hover": { backgroundColor: "#f0f0f0" },
                 }}
               >
                 <ListItemText primary={query.title} secondary={query.query} />
@@ -78,7 +78,7 @@ const Queries = ({ onSelectQuery, isQuerySelected, setIsQuerySelected }) => {
             margin: "10px",
             fontSize: "1.2rem",
           }}
-          onClick={() => setIsOpen(true)} 
+          onClick={() => setIsOpen(true)}
         >
           Open Predefined Queries
         </div>
