@@ -3,6 +3,10 @@ import { CssBaseline, ThemeProvider, createTheme } from "@mui/material";
 import { motion } from "framer-motion";
 import Navbar from "./components/Navbar";
 import Queries from "./components/Queries";
+import SexyEditor from "./components/ReactEditor";
+import SimpleEditor from "./components/ReactEditor";
+import ReactEditor from "./components/ReactEditor";
+import TiptapEditor from "./components/ReactEditor";
 
 function App() {
   const [isQuerySelected , setIsQuerySelected] = React.useState(-1);
@@ -33,7 +37,7 @@ function App() {
   ></motion.div>
 
   <Queries  isQuerySelected={isQuerySelected} setIsQuerySelected={setIsQuerySelected} />
-
+    <TiptapEditor/>
       </>
   );
 }

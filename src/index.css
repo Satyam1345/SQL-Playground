@@ -1,3 +1,5 @@
+@import url('https://fonts.googleapis.com/css2?family=JetBrains+Mono:wght@400;700&display=swap');
+
 :root {
   font-family: system-ui, Avenir, Helvetica, Arial, sans-serif;
   line-height: 1.5;
@@ -65,4 +67,15 @@ button:focus-visible {
   button {
     background-color: #f9f9f9;
   }
+}
+
+/* Custom Prose Styles */
+.prose-invert {
+  --tw-prose-body: #e2e8f0;
+  --tw-prose-headings: #f8fafc;
+}
+
+/* Smooth Cursor Animation */
+.ProseMirror-focused {
+  caret-color: #ec4899; /* Pink cursor */
 }
