@@ -15,20 +15,22 @@ const Queries = ({ setId, id }) => {
         <Paper
           elevation={3}
           sx={{
-            height: "25vh",
+            height: "30.5vh",
             width: "35vw",
             overflowY: "scroll",
-            padding: "20px",
+            padding: "8px",
             margin: "4px",
             borderRadius: "12px",
             color: "white",
-            background: "rgba(255, 255, 255, 0.2)", 
+            background: "rgba(110, 102, 102, 0.2)", 
             backdropFilter: "blur(10px)", 
             WebkitBackdropFilter: "blur(10px)", 
             border: "1px solid rgba(255, 255, 255, 0.3)", 
             boxShadow: "0 4px 10px rgba(0, 0, 0, 0.1)", 
           }}
         >
+          <div style={{padding:"4px" , borderRadius:"8px" ,          background: "rgba(158, 153, 153, 0.2)", 
+}}>
           <div
             style={{
               display: "flex",
@@ -84,6 +86,7 @@ const Queries = ({ setId, id }) => {
               </ListItem>
             ))}
           </List>
+          </div>
         </Paper>
       ) : (
         <div
