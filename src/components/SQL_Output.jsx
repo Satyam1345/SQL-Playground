@@ -19,10 +19,10 @@ const assignFilePath = (id) => {
   else if (id === 9 || id === 10) 
   setFilename("suppliers.csv");
   else if (id != 0 && id!= 1) {
-    const num = Math.floor(Math.random() * 10) + 1;
+    var num = Math.floor(Math.random() * 10) + 1;
     console.log("Random ID:", num);
     if(num == id){
-      num = num + 2;
+      num = id + 2;
     }
     assignFilePath(num);
   }

@@ -80,7 +80,7 @@ const Queries = ({ setId, id }) => {
                   primary={query.title}
                   secondary={query.query}
                   sx={{ color: "white" }}
-                  primaryTypographyProps={{ sx: { color: "white", fontWeight: "bold" , fontWeight:"underline" , textDecoration:"underline"} }}
+                  primaryTypographyProps={{ sx: { color: "white", fontWeight: "bold", textDecoration:"underline"} }}
                   secondaryTypographyProps={{ sx: { color: "white" } }}
                 />
               </ListItem>
