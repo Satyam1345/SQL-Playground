@@ -12,13 +12,23 @@ const TiptapEditor = ({setId}) => {
     setIsOpen(!isOpen);
   }
 
-  const editor = useEditor({
-    extensions: [StarterKit],
-    content,
-    onUpdate: ({ editor }) => {
-      setContent(editor.getHTML());
-    },
-  });
+  const [isFirstClick, setIsFirstClick] = useState(true);
+
+const editor = useEditor({
+  extensions: [StarterKit],
+  content,
+  onUpdate: ({ editor }) => {
+    setContent(editor.getHTML());
+  },
+});
+
+const handleEditorFocus = () => {
+  if (isFirstClick) {
+    editor.commands.setContent('');
+    setIsFirstClick(false);
+  }
+};
+
 
   const handleCopy = () => {
     if (editor) {
@@ -28,6 +38,8 @@ const TiptapEditor = ({setId}) => {
 
   const handleNewReport = () => {
     setId(0) ; 
+    if(isListening)
+    toggleVoiceInput();
     if (editor) {
       editor.commands.setContent('<p>Enter your SQL Query to generate Data...</p>');
     }
@@ -38,32 +50,29 @@ const TiptapEditor = ({setId}) => {
       alert('Speech recognition not supported in your browser');
       return;
     }
-
+  
     const recognition = new window.webkitSpeechRecognition();
     recognition.continuous = true;
-    recognition.interimResults = true;
-
+    recognition.interimResults = false; // ✅ Fix duplication
+  
     if (isListening) {
       recognition.stop();
       setIsListening(false);
     } else {
       recognition.start();
       setIsListening(true);
-
+  
       recognition.onresult = (event) => {
-        const transcript = Array.from(event.results)
-          .map(result => result[0])
-          .map(result => result.transcript)
-          .join('');
-
+        const transcript = event.results[event.results.length - 1][0].transcript; // ✅ Only latest final result
+  
         if (editor) {
-          const { from, to } = editor.state.selection;
-          if (from !== to) editor.commands.deleteRange({ from, to });
-          editor.commands.insertContent(transcript);
+          const { from, to } = editor.state.selection; // ✅ Get cursor position
+          editor.chain().focus().insertContentAt({ from, to }, transcript).run(); // ✅ Insert at cursor
         }
       };
     }
   };
+  
 
   const AllocateId = () => {
     var num = Math.floor(Math.random() * 10000) + 1;
@@ -74,10 +83,10 @@ const TiptapEditor = ({setId}) => {
     isOpen ? (
 
       <div style = {{
-        height: "25vh",
-        width: "37.5vw",
-        paddingTop: "12px",
-        paddingBottom: "12px",
+        height: "30.5vh",
+        width: "35vw",
+        // paddingTop: "12px",
+        // paddingBottom: "12px",
         overflowY: "scroll",
         margin: "4px",
         borderRadius: "12px",
@@ -115,7 +124,7 @@ const TiptapEditor = ({setId}) => {
           </button>
         </div>
   
-        <EditorContent editor={editor} className="editor-content" />
+        <EditorContent editor={editor} className="editor-content" onFocus={handleEditorFocus} />
       </div>
 
     ) : (

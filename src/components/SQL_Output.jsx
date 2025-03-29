@@ -5,17 +5,17 @@ const SQL_Output = ({ id }) => {
   const [data, setData] = useState([]);
   const [loading, setLoading] = useState(true);
   const [page, setPage] = useState(0);
-  const rowsPerPage = 10;
+  const rowsPerPage = 10000;
   const [filename, setFilename] = useState("employees.csv");
   console.log("ID in SQL Output:", id);
 
 const assignFilePath = (id) => {
   if (id === 3 || id === 4) 
-  setFilename("customers.csv");
+  setFilename("Iris.csv");
   else if (id === 5 || id === 6) 
   setFilename("order_details.csv");
   else if (id === 7 || id === 8) 
-  setFilename("regions.csv");
+  setFilename("KNNAlgorithmDataset.csv");
   else if (id === 9 || id === 10) 
   setFilename("suppliers.csv");
   else if (id != 0 && id!= 1) {

@@ -2,11 +2,13 @@ import React, { useState } from "react";
 import { List, ListItem, ListItemText, Typography, Paper } from "@mui/material";
 import { predefinedQueries } from "../data/query-data";
 
-const Queries = ({setId , id}) => {
+const Queries = ({ setId, id }) => {
   const [isOpen, setIsOpen] = useState(true);
+
   const PassId = (e) => {
     setId(e);
-  }
+  };
+
   return (
     <>
       {isOpen ? (
@@ -19,6 +21,12 @@ const Queries = ({setId , id}) => {
             padding: "20px",
             margin: "4px",
             borderRadius: "12px",
+            color: "white",
+            background: "rgba(255, 255, 255, 0.2)", 
+            backdropFilter: "blur(10px)", 
+            WebkitBackdropFilter: "blur(10px)", 
+            border: "1px solid rgba(255, 255, 255, 0.3)", 
+            boxShadow: "0 4px 10px rgba(0, 0, 0, 0.1)", 
           }}
         >
           <div
@@ -58,13 +66,21 @@ const Queries = ({setId , id}) => {
                 key={query.id}
                 onClick={() => PassId(query.id)}
                 sx={{
-                  backgroundColor: id === query.id ? "#cce5ff" : "white",
-                  borderBottom: "1px solid #ddd",
+                  color: "white",
+                  backgroundColor:
+                    id === query.id ? "rgba(255, 255, 255, 0.3)" : "transparent",
+                  borderBottom: "1px solid rgba(255, 255, 255, 0.2)",
                   cursor: "pointer",
-                  "&:hover": { backgroundColor: "#f0f0f0" },
+                  "&:hover": { backgroundColor: "rgba(255, 255, 255, 0.4)" },
                 }}
               >
-                <ListItemText primary={query.title} secondary={query.query} />
+                <ListItemText
+                  primary={query.title}
+                  secondary={query.query}
+                  sx={{ color: "white" }}
+                  primaryTypographyProps={{ sx: { color: "white", fontWeight: "bold" , fontWeight:"underline" , textDecoration:"underline"} }}
+                  secondaryTypographyProps={{ sx: { color: "white" } }}
+                />
               </ListItem>
             ))}
           </List>

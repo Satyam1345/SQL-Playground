@@ -32,7 +32,7 @@ function App() {
           zIndex: -1,
         }}
       ></motion.div>
-
+      
       <div
         style={{
           display: "flex",
