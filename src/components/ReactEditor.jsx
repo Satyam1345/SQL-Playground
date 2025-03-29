@@ -2,7 +2,7 @@ import { useEditor, EditorContent } from "@tiptap/react";
 import StarterKit from "@tiptap/starter-kit";
 import { useState } from "react";
 import { Mic, Copy, FilePlus } from "lucide-react";
-import "./TiptapEditor.css";
+
 
 const TiptapEditor = ({ setId }) => {
   const [content, setContent] = useState(
@@ -11,6 +11,8 @@ const TiptapEditor = ({ setId }) => {
   const [isListening, setIsListening] = useState(false);
   const [isOpen, setIsOpen] = useState(true);
   const [isFirstClick, setIsFirstClick] = useState(true);
+  const [loadingJoke, setLoadingJoke] = useState(false);
+  const GEMINI_API_KEY = import.meta.env.VITE_GEMINI_API_KEY;
 
   const editor = useEditor({
     extensions: [StarterKit],
@@ -73,6 +75,49 @@ const TiptapEditor = ({ setId }) => {
     var num = Math.floor(Math.random() * 10000) + 1;
     setId(num);
   };
+
+  const handleJoke = async () => {
+    setLoadingJoke(true);
+    try {
+      const response = await fetch(
+        `https://generativelanguage.googleapis.com/v1beta/models/gemini-1.5-pro-001:generateContent?key=${GEMINI_API_KEY}`,
+        {
+          method: "POST",
+          headers: {
+            "Content-Type": "application/json",
+          },
+          body: JSON.stringify({
+            contents: [
+              {
+                parts: [
+                  { text: "Tell me a programming joke about Data Handling by DataScientists" }
+                ]
+              }
+            ]
+          }),
+        }
+      );
+  
+      const data = await response.json();
+      console.log("API Response:", data);
+  
+      const joke =
+        data.candidates?.[0]?.content?.parts?.[0]?.text ||
+        "No joke found 🤔";
+  
+      if (editor) {
+        editor.commands.setContent(`<p>💡 ${joke}</p>`);
+      }
+    } catch (error) {
+      console.error("Error fetching joke:", error);
+      if (editor) {
+        editor.commands.insertContent(`<p>❌ Failed to fetch a joke.</p>`);
+      }
+    }
+    setLoadingJoke(false);
+  };
+  
+
 
   return isOpen ? (
     <div
@@ -165,7 +210,7 @@ const TiptapEditor = ({ setId }) => {
         </button>
 
         <button
-          onClick={handleNewReport}
+          onClick={handleJoke}
           style={{
             padding: "8px",
             borderRadius: "4px",
