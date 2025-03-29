@@ -18,7 +18,7 @@ const assignFilePath = (id) => {
   setFilename("regions.csv");
   else if (id === 9 || id === 10) 
   setFilename("suppliers.csv");
-  else if (id === 11) {
+  else if (id != 0 && id!= 1) {
     const num = Math.floor(Math.random() * 10) + 1;
     assignFilePath(num);
   }

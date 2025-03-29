@@ -4,8 +4,8 @@ import { useState } from 'react';
 import { Mic, Copy, FilePlus } from 'lucide-react';
 import './TiptapEditor.css';
 
-const TiptapEditor = () => {
-  const [content, setContent] = useState('<p>Enter Your Query Here...</p>');
+const TiptapEditor = ({setId}) => {
+  const [content, setContent] = useState('<p>Enter your SQL Query to generate Data...</p>');
   const [isListening, setIsListening] = useState(false);
   const [isOpen , setIsOpen] = useState(true);
   const CollapseComponent = () => {
@@ -23,13 +23,13 @@ const TiptapEditor = () => {
   const handleCopy = () => {
     if (editor) {
       navigator.clipboard.writeText(editor.getText());
-      alert('Content copied to clipboard!');
     }
   };
 
   const handleNewReport = () => {
+    setId(0) ; 
     if (editor) {
-      editor.commands.setContent('<p>New report started...</p>');
+      editor.commands.setContent('<p>Enter your SQL Query to generate Data...</p>');
     }
   };
 
@@ -65,6 +65,11 @@ const TiptapEditor = () => {
     }
   };
 
+  const AllocateId = () => {
+    var num = Math.floor(Math.random() * 10000) + 1;
+    setId(num) ; 
+  }
+
   return (
     isOpen ? (
 
@@ -79,27 +84,6 @@ const TiptapEditor = () => {
       }}>
         <div className="toolbar">
           {/* Formatting Buttons */}
-          <button
-            onClick={() => editor?.chain().focus().toggleBold().run()}
-            className={`toolbar-button ${editor?.isActive('bold') ? 'is-active' : ''}`}
-            title="Bold"
-          >
-            B
-          </button>
-          <button
-            onClick={() => editor?.chain().focus().toggleItalic().run()}
-            className={`toolbar-button ${editor?.isActive('italic') ? 'is-active' : ''}`}
-            title="Italic"
-          >
-            I
-          </button>
-          <button
-            onClick={() => editor?.chain().focus().toggleUnderline().run()}
-            className={`toolbar-button ${editor?.isActive('underline') ? 'is-active' : ''}`}
-            title="Underline"
-          >
-            U
-          </button>
   
           {/* Action Buttons */}
           <button
@@ -112,6 +96,10 @@ const TiptapEditor = () => {
           <button onClick={handleCopy} className="toolbar-button" title="Copy">
             <Copy size={16} />
             Copy
+          </button>
+          <button onClick={AllocateId} className="toolbar-button" title="New Report">
+            <FilePlus size={16} />
+            Submit
           </button>
           <button onClick={handleNewReport} className="toolbar-button" title="New Report">
             <FilePlus size={16} />

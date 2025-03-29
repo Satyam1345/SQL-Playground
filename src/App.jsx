@@ -60,7 +60,7 @@ function App() {
 
           {/* Right: Editor */}
           <div style={{ width: "50%" }}>
-            <TiptapEditor />
+            <TiptapEditor  setId={setId} />
           </div>
         </div>
 
