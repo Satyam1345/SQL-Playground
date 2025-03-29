@@ -3,7 +3,8 @@
 ## Overview
 
 This project is a web-based SQL query mock application that allows users to interact with datasets using predefined queries and a custom query editor. It includes a voice input feature for hands-free query execution, a reset button to explore other datasets, and a visually engaging UI with collapsible components. Additionally, the application incorporates fun elements like a random joke generator to keep the experience refreshing.
-
+- Deployement = https://sql-playground-omega.vercel.app/
+- Video Walkthrough = https://drive.google.com/file/d/1_rLBKBCKiZNrqWMS0z9u_so6kRxb2kiA/view 
 ## Features
 
 ### 1. **Predefined Queries**
@@ -85,27 +86,22 @@ This project is a web-based SQL query mock application that allows users to inte
 4. Access the application at `http://localhost:3000`
 
 ## Performance Optimizations
-
-- Implemented lazy loading for components to improve initial load time.
-- Used memoization techniques (`useMemo` and `useCallback`) to optimize rendering.
-- Minimized unnecessary re-renders by properly structuring React state.
+- Minimized unnecessary re-renders by properly structuring React state using One Single UseState inside App.jsx
 
 ## Measuring Load Time
 
-- Used Chrome DevTools to analyze page load time.
-- Optimized by reducing unnecessary API calls and bundling assets efficiently.
-- ![image](https://github.com/user-attachments/assets/cf6014de-5228-46d6-9ca8-2a485f2e4ddf)
+- Used Chrome DevTools(LightHouse) to analyze page load time.
+- Optimized by reducing unnecessary page renders and bundling assets efficiently.
+- ![image](https://github.com/user-attachments/assets/28b2e305-5812-49d4-a453-8cc179442a51)
 
 
 ## Additional Notes
 
-- The application is fully responsive and works across different screen sizes.
+- The application is currently optimised only for Laptops.
 - External libraries and dependencies used are mentioned in `package.json`.
 - Supports multiple datasets through dynamic loading.
 
-## Deployment
-
-- Hosted on **[Vercel/Netlify]** (add link here once deployed)
-
 This project is built with a focus on usability, fun, and performance. Happy coding! 🚀
+Hope you enjoyed it :)
+Thank you for your time :)
 
