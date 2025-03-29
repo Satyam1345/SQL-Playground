@@ -53,7 +53,7 @@ This project is a web-based SQL query mock application that allows users to inte
 
 ## Tech Stack
 
-- **Frontend:** React.js
+- **Frontend:** Vite + React.js
 
 - **Styling:** CSS (No Tailwind used as per guidelines)
 
