@@ -6,7 +6,6 @@ import TiptapEditor from "./components/ReactEditor";
 import SQL_Output from "./components/SQL_Output";
 
 function App() {
-  const [isQuerySelected, setIsQuerySelected] = useState(-1);
   const [id , setId] = useState(0);
 
   return (
@@ -55,7 +54,7 @@ function App() {
         >
           {/* Left: Queries */}
           <div style={{ width: "50%" }}>
-            <Queries isQuerySelected={isQuerySelected} setIsQuerySelected={setIsQuerySelected}  setId={setId} id={id}/>
+            <Queries setId={setId} id={id}/>
           </div>
 
           {/* Right: Editor */}

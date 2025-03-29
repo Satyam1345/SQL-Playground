@@ -5,15 +5,14 @@ import { Mic, Copy, FilePlus } from "lucide-react";
 
 
 const TiptapEditor = ({ setId }) => {
-  const [content, setContent] = useState(
-    "<p>Enter your SQL Query to generate Data...</p>"
-  );
+  const [content, setContent] = useState("<p>Enter your SQL Query to generate Data...</p>");
   const [isListening, setIsListening] = useState(false);
   const [isOpen, setIsOpen] = useState(true);
   const [isFirstClick, setIsFirstClick] = useState(true);
   const [loadingJoke, setLoadingJoke] = useState(false);
   const GEMINI_API_KEY = import.meta.env.VITE_GEMINI_API_KEY;
 
+  // Handling States of the Editor
   const editor = useEditor({
     extensions: [StarterKit],
     content,
@@ -21,7 +20,7 @@ const TiptapEditor = ({ setId }) => {
       setContent(editor.getHTML());
     },
   });
-
+  // Handling States of the Editor
   const handleEditorFocus = () => {
     if (isFirstClick) {
       editor.commands.setContent("");
@@ -29,13 +28,15 @@ const TiptapEditor = ({ setId }) => {
     }
   };
 
+  // Coyping Contents to the Clipboard
   const handleCopy = () => {
     if (editor) {
       navigator.clipboard.writeText(editor.getText());
     }
   };
 
-  const handleNewReport = () => {
+  // Resetting the Whole Screen to default
+  const handleNewQuery = () => {
     setId(0);
     if (isListening) toggleVoiceInput();
     if (editor) {
@@ -43,6 +44,7 @@ const TiptapEditor = ({ setId }) => {
     }
   };
 
+  // Handling Voice Input
   const toggleVoiceInput = () => {
     if (!("webkitSpeechRecognition" in window)) {
       alert("Speech recognition not supported in your browser");
@@ -71,11 +73,13 @@ const TiptapEditor = ({ setId }) => {
     }
   };
 
+  // Random ID Allocation to display the Output
   const AllocateId = () => {
     var num = Math.floor(Math.random() * 10000) + 1;
     setId(num);
   };
 
+  // To get a joke from GEMINI
   const handleJoke = async () => {
     setLoadingJoke(true);
     try {
@@ -118,7 +122,7 @@ const TiptapEditor = ({ setId }) => {
   };
   
 
-
+  // Collapisble Queries Section
   return isOpen ? (
     <div
       style={{
@@ -195,7 +199,7 @@ const TiptapEditor = ({ setId }) => {
         </button>
 
         <button
-          onClick={handleNewReport}
+          onClick={handleNewQuery}
           style={{
             padding: "8px",
             borderRadius: "4px",
