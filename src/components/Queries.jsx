@@ -2,16 +2,18 @@ import React, { useState } from "react";
 import { List, ListItem, ListItemText, Typography, Paper } from "@mui/material";
 import { predefinedQueries } from "../data/query-data";
 
-const Queries = ({  isQuerySelected, setIsQuerySelected }) => {
+const Queries = ({setId , id}) => {
   const [isOpen, setIsOpen] = useState(true);
-
+  const PassId = (e) => {
+    setId(e);
+  }
   return (
     <>
       {isOpen ? (
         <Paper
           elevation={3}
           sx={{
-            height: "30vh",
+            height: "25vh",
             width: "35vw",
             overflowY: "scroll",
             padding: "20px",
@@ -54,9 +56,9 @@ const Queries = ({  isQuerySelected, setIsQuerySelected }) => {
               <ListItem
                 button
                 key={query.id}
-                onClick={() => setIsQuerySelected(query.id)}
+                onClick={() => PassId(query.id)}
                 sx={{
-                  backgroundColor: isQuerySelected === query.id ? "#cce5ff" : "white",
+                  backgroundColor: id === query.id ? "#cce5ff" : "white",
                   borderBottom: "1px solid #ddd",
                   cursor: "pointer",
                   "&:hover": { backgroundColor: "#f0f0f0" },

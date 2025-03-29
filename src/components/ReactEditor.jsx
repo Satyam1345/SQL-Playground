@@ -69,7 +69,7 @@ const TiptapEditor = () => {
     isOpen ? (
 
       <div style = {{
-        height: "30vh",
+        height: "25vh",
         width: "37.5vw",
         paddingTop: "12px",
         paddingBottom: "12px",
