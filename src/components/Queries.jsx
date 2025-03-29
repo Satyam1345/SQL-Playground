@@ -11,11 +11,11 @@ const Queries = ({  isQuerySelected, setIsQuerySelected }) => {
         <Paper
           elevation={3}
           sx={{
-            height: "40vh",
-            width: "25vw",
+            height: "30vh",
+            width: "35vw",
             overflowY: "scroll",
-            padding: 2,
-            margin: 4,
+            padding: "20px",
+            margin: "4px",
             borderRadius: "12px",
           }}
         >

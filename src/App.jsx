@@ -36,8 +36,30 @@ function App() {
     }}
   ></motion.div>
 
-  <Queries  isQuerySelected={isQuerySelected} setIsQuerySelected={setIsQuerySelected} />
-    <TiptapEditor/>
+      <div 
+        style = {{
+          display: "flex",
+          flexDirection: "row",
+          justifyContent: "center",
+          alignItems: "center",
+          height: "100vh",
+          width: "100vw",
+          marginTop: "10vh",
+        }}
+      >
+        <div style={{ width: "40vw", height: "100vh", alignContent:"flex-start"}}>
+        <Queries  isQuerySelected={isQuerySelected} setIsQuerySelected={setIsQuerySelected} />
+        <TiptapEditor/>
+        </div>
+        <div>
+
+          <h1 style={{ color: "white", fontSize: "2rem", textAlign: "center" }}>
+            AI-Powered Report Generation
+          </h1>
+
+        </div>
+      </div>
+
       </>
   );
 }
