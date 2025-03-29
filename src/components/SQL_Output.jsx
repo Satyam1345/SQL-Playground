@@ -6,9 +6,32 @@ const SQL_Output = ({ id }) => {
   const [loading, setLoading] = useState(true);
   const [page, setPage] = useState(0);
   const rowsPerPage = 10;
+  const [filename, setFilename] = useState("employees.csv");
   console.log("ID in SQL Output:", id);
+
+const assignFilePath = (id) => {
+  if (id === 3 || id === 4) 
+  setFilename("customers.csv");
+  else if (id === 5 || id === 6) 
+  setFilename("order_details.csv");
+  else if (id === 7 || id === 8) 
+  setFilename("regions.csv");
+  else if (id === 9 || id === 10) 
+  setFilename("suppliers.csv");
+  else if (id === 11) {
+    const num = Math.floor(Math.random() * 10) + 1;
+    assignFilePath(num);
+  }
+
+};
+
+useEffect(() => {
+  assignFilePath(id);
+}, [id]); 
+
+
   useEffect(() => {
-    fetch("/employees.csv")
+    fetch(`/${filename}`)
       .then((response) => response.text())
       .then((csvText) => {
         Papa.parse(csvText, {
@@ -21,7 +44,7 @@ const SQL_Output = ({ id }) => {
         });
       })
       .catch((error) => console.error("Error fetching CSV:", error));
-  }, []);
+  }, [filename]);
 
   if (loading) return <p>Loading CSV data...</p>;
 
